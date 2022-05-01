@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server",
-    "build": "cross-env NODE_ENV=production webpack --progress",
+    "build": "cross-env NODE_ENV=production webpack",
     "test": "jest --no-cache",
     "test:watch": "jest --watchAll"
   },
@@ -17,9 +17,8 @@
     "react-dom": "^18.1.0"
   },
   "devDependencies": {
-    "@babel/plugin-external-helpers": "^7.16.7",
+    "@babel/core": "^7.17.10",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
-    "@babel/plugin-proposal-object-rest-spread": "^7.17.3",
     "@babel/preset-env": "^7.17.10",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
@@ -30,8 +29,8 @@
     "@types/webpack": "^5.28.0",
     "@typescript-eslint/eslint-plugin": "^5.21.0",
     "@typescript-eslint/parser": "^5.21.0",
+    "babel-jest": "^28.0.3",
     "babel-loader": "^8.2.5",
-    "babel-plugin-styled-components": "^2.0.7",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "eslint": "^8.14.0",

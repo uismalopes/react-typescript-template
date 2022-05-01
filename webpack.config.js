@@ -6,9 +6,23 @@ const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
+const plugins = [
+  new HtmlWebpackPlugin({
+    template: "./public/index.html",
+  })
+];
+
+if(isDevelopment) {
+  plugins.push(
+    isDevelopment && new webpack.HotModuleReplacementPlugin(),
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+  );
+}
+
 module.exports = {
   mode: isDevelopment ? "development" : "production",
   entry: "./src/index.tsx",
+  plugins,
   devServer: {
     hot: true,
     port: 3000,
@@ -21,16 +35,9 @@ module.exports = {
     filename: "bundle.[hash].js",
     path: path.resolve(__dirname, "dist"),
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-    }),
-    isDevelopment && new webpack.HotModuleReplacementPlugin(),
-    isDevelopment && new ReactRefreshWebpackPlugin(),
-  ],
   resolve: {
     modules: [__dirname, "src", "node_modules"],
-    extensions: ["*", ".js", ".jsx", ".tsx", ".ts"],
+    extensions: [".js", ".jsx", ".tsx", ".ts"],
     plugins: [new TsconfigPathsPlugin()]
   },
   module: {
@@ -44,6 +51,11 @@ module.exports = {
             isDevelopment && require.resolve("react-refresh/babel"),
           ].filter(Boolean),
         },
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"],
       },
       {
         test: /\.css$/,
