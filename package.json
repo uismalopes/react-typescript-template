@@ -9,7 +9,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack",
-    "test": "jest --no-cache",
+    "test": "jest --no-cache --watch",
     "test:watch": "jest --watchAll"
   },
   "dependencies": {
